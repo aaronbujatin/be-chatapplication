@@ -1,13 +1,12 @@
 package com.aaronbujatin.be_chatApplication.chatmesage;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+@ToString
 @Setter
 @Getter
 @Entity
@@ -20,9 +19,9 @@ public class ChatMessage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String message;
-    private String username;
+    private String userId;
     private String roomId;
-    private LocalTime sendTime;
+    private LocalDateTime sendTime;
 
 
 }

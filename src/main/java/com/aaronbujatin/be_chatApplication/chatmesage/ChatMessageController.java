@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
-@CrossOrigin(origins = "localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 @Controller
 @RequiredArgsConstructor
 public class ChatMessageController {
@@ -23,7 +25,7 @@ public class ChatMessageController {
     @SendTo("/topic/{roomId}")
     public ChatMessageDto sendMessage(@DestinationVariable String roomId, ChatMessageDto chatMessageDto){
         chatMessageService.saveMessage(roomId, chatMessageDto);
-        return new ChatMessageDto(chatMessageDto.message(), chatMessageDto.message(), chatMessageDto.sendTime());
+        return new ChatMessageDto(chatMessageDto.message(), chatMessageDto.userId(), LocalDateTime.now());
     }
 
     @GetMapping("/api/chat/{roomId}")
